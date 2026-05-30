@@ -1,0 +1,87 @@
+{
+  "report_id": "2026-05-30_MSFT_Microsoft",
+  "profit_growth": {
+    "script": "a-share-report-analyzer/scripts/calc_profit_growth.py",
+    "years": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "profits_usd_million": [
+      61271.0,
+      72738.0,
+      72361.0,
+      88136.0,
+      101832.0,
+      125216.0
+    ],
+    "yoy_rates": [
+      0.1871521600757291,
+      -0.005182985509637361,
+      0.21800417351888446,
+      0.15539620586366532,
+      0.22963312121926305
+    ],
+    "methods": {
+      "linear_regression": 0.1389633945587883,
+      "median_growth": 0.1871521600757291,
+      "exp_smoothing_alpha_0_5": 0.11961161460650782,
+      "weighted_moving_average": 0.16927759071659942,
+      "theil_sen": 0.14712570510436118,
+      "quantile_regression_q0_4": 0.010620240285883487
+    },
+    "filter_rule": "abs(x) <= 0.5",
+    "valid_results": {
+      "linear_regression": 0.1389633945587883,
+      "median_growth": 0.1871521600757291,
+      "exp_smoothing_alpha_0_5": 0.11961161460650782,
+      "weighted_moving_average": 0.16927759071659942,
+      "theil_sen": 0.14712570510436118,
+      "quantile_regression_q0_4": 0.010620240285883487
+    },
+    "trimmed_results": {
+      "exp_smoothing_alpha_0_5": 0.11961161460650782,
+      "linear_regression": 0.1389633945587883,
+      "theil_sen": 0.14712570510436118,
+      "weighted_moving_average": 0.16927759071659942
+    },
+    "estimated_avg_profit_growth": 0.14374457624656417,
+    "profit_cagr": 0.15366833216957354,
+    "weighted_compound_growth": 0.14870645420806886
+  },
+  "valuation_assumptions": {
+    "current_market_cap_usd_billion": 3340.0,
+    "current_price_usd": 450.24,
+    "ttm_net_income_usd_billion": 125.216,
+    "weighted_compound_growth": 0.14870645420806886,
+    "estimated_fy2027_net_income_usd_billion": 143.84,
+    "main_method": "normalized PE",
+    "main_pe_multiple": 25.8,
+    "intrinsic_market_cap_usd_billion": 3720.0,
+    "safety_pe_multiple": 21.5,
+    "safe_market_cap_usd_billion": 3100.0,
+    "quality_score_g": 0.86,
+    "dev_5y": -0.149,
+    "dev_10y": -0.075
+  },
+  "valuation_zone": {
+    "script": "a-share-report-analyzer/scripts/calc_valuation_zone.py",
+    "E": -0.10215053763440861,
+    "F": 0.07741935483870968,
+    "avg_dev": -0.06218279569892473,
+    "LOW": -0.20930232558139533,
+    "UP": 0.1548,
+    "quality_bucket": "好公司",
+    "price_bucket": "中价",
+    "action": "持有",
+    "lower_factor": 0.8431255801154619,
+    "upper_factor": 1.231370031071924,
+    "lower_market_cap_usd_billion": 2816.0394375856426,
+    "upper_market_cap_usd_billion": 4112.775903780226,
+    "lower_price_usd": 379.60886119118555,
+    "upper_price_usd": 554.4120427898231
+  }
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "path": "reports/equity/us/MSFT/2026/2026-05-30_MSFT_Microsoft/report.md",
+    "market": "US",
+    "ticker": "MSFT",
+    "company": "Microsoft",
+    "title": "微软分析及评估报告",
+    "date": "2026-05-30",
+    "industry": "Software / Cloud / AI",
+    "score": 8.62,
+    "action": "持有",
+    "currentValue": { "label": "$450.24", "numeric": 450.24 },
+    "safetyValue": { "label": "$417", "numeric": 417 },
+    "intrinsicValue": { "label": "$501", "numeric": 501 },
+    "summary": "微软 FY26 Q3 云和 AI 业务仍在加速，Azure 增速 40%，Microsoft Cloud 增速 29%。微软当前 PE 不贵，甚至低于部分同业；但 P/FCF 高，说明市场真正的分歧是 AI CapEx 的回收周期。以 450.24 美元计，微软处在“好公司中价”区域，不是明显高估，也不是有厚安全边际的低价。"
+  },
+  {
+    "path": "reports/equity/hk/2498/2026/2026-05-30_2498_RoboSense/report.md",
+    "market": "HK",
+    "ticker": "2498",
+    "company": "RoboSense",
+    "title": "速腾聚创分析及评估报告",
+    "date": "2026-05-30",
+    "industry": "LiDAR / Robotics / Edge AI",
+    "score": 6.6,
+    "action": "中性",
+    "currentValue": { "label": "HK$31.64", "numeric": 31.64 },
+    "safetyValue": { "label": "HK$25.16", "numeric": 25.16 },
+    "intrinsicValue": { "label": "HK$38.70", "numeric": 38.70 },
+    "summary": "机器人业务增速极强、毛利率优于 ADAS、公司亏损大幅收窄；但禾赛已盈利而速腾聚创仍在验证连续盈利，且 LiDAR 行业技术路线与价格竞争仍激烈。当前约 HK$31.64，位于模型中枢区间内。"
+  }
+]

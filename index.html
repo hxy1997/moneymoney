@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Finance Reports</title>
+    <meta name="description" content="A refined research workbench for browsing, comparing, and reading equity reports.">
+    <link rel="stylesheet" href="assets/styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script defer src="assets/app.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <header class="toolbar">
+        <div class="toolbar-inner">
+          <div class="toolbar-brand" aria-label="Finance Reports">
+            <div class="toolbar-title">Finance Reports</div>
+            <div class="toolbar-subtitle">Equity research workbench</div>
+          </div>
+
+          <div class="toolbar-controls" aria-label="Report filters">
+            <label class="label" for="searchInput">Search</label>
+            <input
+              class="search-input"
+              id="searchInput"
+              type="search"
+              placeholder="Ticker, company, action"
+              autocomplete="off"
+            >
+
+            <div class="filter-chips" role="group" aria-label="Market">
+              <button class="filter-chip active" type="button" data-market="All" aria-pressed="true">All</button>
+              <button class="filter-chip" type="button" data-market="US" aria-pressed="false">US</button>
+              <button class="filter-chip" type="button" data-market="HK" aria-pressed="false">HK</button>
+            </div>
+
+            <label class="label" for="yearFilter">Year</label>
+            <select class="sort-select" id="yearFilter" aria-label="Filter by year">
+              <option value="All">All years</option>
+            </select>
+
+            <label class="label" for="sortSelect">Sort</label>
+            <select class="sort-select" id="sortSelect" aria-label="Sort reports">
+              <option value="newest">Newest</option>
+              <option value="score-desc">Score high to low</option>
+              <option value="company-asc">Company A-Z</option>
+            </select>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-shell">
+        <aside class="report-rail" aria-label="Reports">
+          <div class="report-list" id="reportList"></div>
+        </aside>
+
+        <section class="workspace" aria-live="polite">
+          <div class="report-placeholder" id="reportPlaceholder">
+            <div class="report-placeholder-inner">
+              <div class="report-placeholder-title">Select a report</div>
+              <p class="report-placeholder-text">Choose a company from the report list to read the full analysis.</p>
+            </div>
+          </div>
+
+          <article class="report-view" id="reportView">
+            <header class="report-header" id="reportHeader"></header>
+            <section class="metrics-row" id="metricsRow" aria-label="Key metrics"></section>
+            <section class="valuation-strip" id="valuationStrip" aria-label="Valuation range"></section>
+            <nav class="section-nav" aria-label="Report sections">
+              <div class="section-nav-inner" id="sectionNav"></div>
+            </nav>
+            <div class="report-body" id="reportBody"></div>
+          </article>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

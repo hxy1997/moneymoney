@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-30T00:00:00+08:00",
+  "title": "Design System: Finance Reports",
+  "extensions": {
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Pure Desk White",
+        "canonical": "oklch(1 0 0)",
+        "tonalRamp": ["oklch(1 0 0)", "oklch(0.975 0.004 265)", "oklch(0.955 0.008 265)"]
+      },
+      "primary": {
+        "role": "primary",
+        "displayName": "Cobalt Focus",
+        "canonical": "oklch(0.476 0.175 261.2)",
+        "tonalRamp": ["oklch(0.93 0.035 262)", "oklch(0.70 0.10 261)", "oklch(0.476 0.175 261.2)", "oklch(0.36 0.15 261)"]
+      },
+      "violet": {
+        "role": "secondary",
+        "displayName": "Research Violet",
+        "canonical": "oklch(0.52 0.145 292)",
+        "tonalRamp": ["oklch(0.94 0.032 292)", "oklch(0.70 0.08 292)", "oklch(0.52 0.145 292)", "oklch(0.38 0.12 292)"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Selected report title and page title only."
+      },
+      "body": {
+        "displayName": "Reading Body",
+        "purpose": "Long-form Markdown report content with generous line height."
+      },
+      "label": {
+        "displayName": "Workbench Label",
+        "purpose": "Dense metadata, filters, market codes, and compact control labels."
+      }
+    },
+    "motion": {
+      "durationFast": "150ms",
+      "durationBase": "220ms",
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "rules": [
+        "Use motion only for state change, focus, reveal, and report switching.",
+        "Respect prefers-reduced-motion with instant transitions or crossfades.",
+        "Do not choreograph a decorative page-load sequence."
+      ]
+    },
+    "layout": {
+      "desktop": "Sticky top toolbar, left report rail, main reading workspace.",
+      "mobile": "Toolbar, filter chips, report list, selected report summary, then Markdown body.",
+      "readingMeasure": "65-75ch",
+      "breakpoints": {
+        "railCollapse": "900px",
+        "compactControls": "640px"
+      }
+    },
+    "signatureComponents": {
+      "valuationStrip": {
+        "purpose": "Compare safety value, current value, and intrinsic value.",
+        "states": ["neutral", "below-safety", "near-current", "above-intrinsic"],
+        "accessibility": "Always include text labels and numeric values; never encode risk only by color."
+      },
+      "reportListItem": {
+        "purpose": "Select reports quickly while showing market, date, score, and model action.",
+        "states": ["default", "hover", "focus", "selected", "disabled"]
+      }
+    },
+    "rules": {
+      "dos": [
+        "Keep the interface white, precise, and readable.",
+        "Use cobalt and violet as functional marks only.",
+        "Prefer borders, spacing, and typography over shadows.",
+        "Keep long-form report reading as the main event."
+      ],
+      "donts": [
+        "Do not create a dark neon trading terminal.",
+        "Do not create a generic SaaS card wall.",
+        "Do not use decorative charts, glassmorphism, gradient text, or thick colored side stripes.",
+        "Do not rely on color alone for state."
+      ]
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "report_id": "2026-05-30_MSFT_Microsoft",
+  "as_of_date": "2026-05-30",
+  "market_data_as_of": "2026-05-29",
+  "company": {
+    "name": "Microsoft Corporation",
+    "ticker": "MSFT",
+    "market": "NASDAQ",
+    "country": "United States",
+    "sector": "Information Technology",
+    "sub_industry": "Mature technology leader: enterprise software, cloud computing, AI platform, productivity SaaS"
+  },
+  "market_snapshot": {
+    "price_usd": 450.24,
+    "market_cap_usd_trillion": 3.34,
+    "ttm_pe": 26.82,
+    "forward_pe": 24.36,
+    "pb": 8.07,
+    "p_fcf": 45.87,
+    "roe_percent": 34.01,
+    "roic_percent": 27.24,
+    "ttm_revenue_usd_billion": 318.27,
+    "ttm_net_income_usd_billion": 125.22,
+    "ttm_fcf_usd_billion": 72.92
+  },
+  "financials_usd_billion": [
+    {
+      "period": "FY2021",
+      "revenue": 168.09,
+      "net_income": 61.27,
+      "roe_percent": 43.2,
+      "operating_cash_flow": 76.74,
+      "free_cash_flow": 56.12
+    },
+    {
+      "period": "FY2022",
+      "revenue": 198.27,
+      "net_income": 72.74,
+      "roe_percent": 43.7,
+      "operating_cash_flow": 89.04,
+      "free_cash_flow": 65.15
+    },
+    {
+      "period": "FY2023",
+      "revenue": 211.92,
+      "net_income": 72.36,
+      "roe_percent": 35.1,
+      "operating_cash_flow": 87.58,
+      "free_cash_flow": 59.48
+    },
+    {
+      "period": "FY2024",
+      "revenue": 245.12,
+      "net_income": 88.14,
+      "roe_percent": 37.1,
+      "operating_cash_flow": 118.55,
+      "free_cash_flow": 74.07
+    },
+    {
+      "period": "FY2025",
+      "revenue": 281.72,
+      "net_income": 101.83,
+      "roe_percent": 33.8,
+      "operating_cash_flow": 136.16,
+      "free_cash_flow": 71.61
+    },
+    {
+      "period": "TTM 2026-03",
+      "revenue": 318.27,
+      "net_income": 125.22,
+      "roe_percent": 34.0,
+      "operating_cash_flow": 170.14,
+      "free_cash_flow": 72.92
+    }
+  ],
+  "valuation_position_inputs": {
+    "current_pe": 26.82,
+    "estimated_5y_median_pe": 31.5,
+    "estimated_10y_median_pe": 29.0,
+    "dev_5y": -0.149,
+    "dev_10y": -0.075,
+    "current_pb": 8.07,
+    "estimated_5y_median_pb": 10.5,
+    "estimated_10y_median_pb": 8.0
+  },
+  "valuation_anchor": {
+    "anchor_id": "global_mature_software_cloud_ai_2026-05-30",
+    "version_date": "2026-05-30",
+    "freshness_status": "created_in_report_due_to_missing_local_anchor",
+    "primary_anchor": "normalized PE / forward PE + ROIC",
+    "secondary_anchor": "peer forward PE, FCF yield, DCF / normalized FCF",
+    "weak_or_floor_anchor": "PB only as asset-efficiency check",
+    "disabled_anchors": [
+      "simple PS",
+      "mechanical P/FCF without AI capex normalization"
+    ]
+  },
+  "peer_snapshot": [
+    {
+      "company": "Microsoft",
+      "ticker": "MSFT",
+      "market_cap_usd_trillion": 3.34,
+      "ttm_pe": 26.82,
+      "forward_pe": 24.36,
+      "pb": 8.07,
+      "roe_percent": 34.01,
+      "ttm_revenue_usd_billion": 318.27,
+      "ttm_fcf_usd_billion": 72.92
+    },
+    {
+      "company": "Alphabet",
+      "ticker": "GOOGL",
+      "market_cap_usd_trillion": 4.61,
+      "ttm_pe": 29.02,
+      "forward_pe": 30.39,
+      "pb": 9.63,
+      "roe_percent": 38.88,
+      "ttm_revenue_usd_billion": 422.50,
+      "ttm_fcf_usd_billion": 64.43
+    },
+    {
+      "company": "Amazon",
+      "ticker": "AMZN",
+      "market_cap_usd_trillion": 2.91,
+      "ttm_pe": 32.37,
+      "forward_pe": 32.45,
+      "pb": 6.59,
+      "roe_percent": 24.28,
+      "ttm_revenue_usd_billion": 742.78,
+      "ttm_fcf_usd_billion": -2.47
+    },
+    {
+      "company": "Oracle",
+      "ticker": "ORCL",
+      "market_cap_usd_trillion": 0.64935,
+      "ttm_pe": 40.51,
+      "forward_pe": 29.99,
+      "pb": 19.35,
+      "roe_percent": 57.57,
+      "ttm_revenue_usd_billion": 64.08,
+      "ttm_fcf_usd_billion": -24.74
+    }
+  ]
+}
