@@ -1,5 +1,20 @@
 [
   {
+    "path": "reports/equity/us/AMZN/2026/2026-06-01_AMZN_Amazon/report.md",
+    "market": "US",
+    "ticker": "AMZN",
+    "company": "Amazon",
+    "title": "亚马逊分析及评估报告",
+    "date": "2026-06-01",
+    "industry": "Cloud / E-commerce / Advertising / AI Infrastructure",
+    "score": 8.37,
+    "action": "持有",
+    "currentValue": { "label": "$272.29", "numeric": 272.29 },
+    "safetyValue": { "label": "$216", "numeric": 216 },
+    "intrinsicValue": { "label": "$309", "numeric": 309 },
+    "summary": "亚马逊不是单纯零售股，而是电商流量、第三方卖家、广告、AWS 和 Trainium 自研 AI 芯片共同构成的复合平台。AWS 2026Q1 增速重回 28%，广告增长 24%，但 TTM FCF 被 AI capex 压到约 12 亿美元。模型映射为“好公司中价”，动作偏持有。"
+  },
+  {
     "path": "reports/equity/hk/9992/2026/2026-06-01_9992_PopMart/report.md",
     "market": "HK",
     "ticker": "9992",
