@@ -1,5 +1,35 @@
 [
   {
+    "path": "reports/equity/hk/9992/2026/2026-06-01_9992_PopMart/report.md",
+    "market": "HK",
+    "ticker": "9992",
+    "company": "泡泡玛特",
+    "title": "泡泡玛特分析及评估报告",
+    "date": "2026-06-01",
+    "industry": "Pop Toy IP / Collectible Toy Retail",
+    "score": 8.08,
+    "action": "持有",
+    "currentValue": { "label": "HK$173.40", "numeric": 173.40 },
+    "safetyValue": { "label": "HK$158.45", "numeric": 158.45 },
+    "intrinsicValue": { "label": "HK$232.98", "numeric": 232.98 },
+    "summary": "泡泡玛特已从普通潮玩零售商升级为高毛利、高现金流、海外扩张中的 IP 消费公司。当前 PE 不高，PS 也不算极端，但增长质量高度依赖 IP 持续性和海外复购，模型映射为“好公司中价”，动作偏持有。"
+  },
+  {
+    "path": "reports/equity/us/NOK/2026/2026-06-01_NOK_Nokia/report.md",
+    "market": "US",
+    "ticker": "NOK",
+    "company": "Nokia",
+    "title": "诺基亚分析及评估报告",
+    "date": "2026-06-01",
+    "industry": "Optical Networks / InP Photonic Integration",
+    "score": 6.67,
+    "action": "减持",
+    "currentValue": { "label": "$14.84", "numeric": 14.84 },
+    "safetyValue": { "label": "$9.07", "numeric": 9.07 },
+    "intrinsicValue": { "label": "$11.79", "numeric": 11.79 },
+    "summary": "诺基亚的 Infinera/InP/相干光业务改变了叙事，AI 光互联可能提升长期收入质量；但当前市值已提前反映较多乐观预期，而 ROE、利润率和集团业务结构还没有完全匹配，模型映射为“中公司高价”，动作偏减持。"
+  },
+  {
     "path": "reports/equity/cn/600584/2026/2026-06-01_600584_JCET/report.md",
     "market": "CN",
     "ticker": "600584",
