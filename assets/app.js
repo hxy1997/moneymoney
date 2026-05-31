@@ -399,7 +399,7 @@ function actionClass(action) {
   if (action === '持有') return 'action-hold';
   if (action === '中性') return 'action-neutral';
   if (action === '买入') return 'action-buy';
-  if (action === '卖出') return 'action-sell';
+  if (action === '卖出' || action === '减持') return 'action-sell';
   return '';
 }
 

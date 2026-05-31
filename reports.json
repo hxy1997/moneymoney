@@ -1,5 +1,20 @@
 [
   {
+    "path": "reports/equity/cn/600584/2026/2026-06-01_600584_JCET/report.md",
+    "market": "CN",
+    "ticker": "600584",
+    "company": "长电科技",
+    "title": "长电科技分析及评估报告",
+    "date": "2026-06-01",
+    "industry": "Semiconductor OSAT / Advanced Packaging",
+    "score": 6.67,
+    "action": "减持",
+    "currentValue": { "label": "¥82.05", "numeric": 82.05 },
+    "safetyValue": { "label": "¥29.48", "numeric": 29.48 },
+    "intrinsicValue": { "label": "¥45.00", "numeric": 45.00 },
+    "summary": "长电科技是先进封装重估中最正宗的大陆 OSAT 龙头之一，韬定律强化其产业叙事；但当前市值、PE、PB 均处历史高位，已明显提前反映先进封装高增长和利润率上行。模型映射为“中公司高价”，动作偏减持。"
+  },
+  {
     "path": "reports/equity/us/MSFT/2026/2026-05-30_MSFT_Microsoft/report.md",
     "market": "US",
     "ticker": "MSFT",

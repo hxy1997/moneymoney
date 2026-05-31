@@ -355,6 +355,11 @@ body {
   color: var(--primary);
 }
 
+.report-item-badge.market-cn {
+  background: color-mix(in oklch, var(--danger) 11%, white);
+  color: var(--danger);
+}
+
 .report-item-badge.market-hk {
   background: var(--violet-soft);
   color: var(--violet);
