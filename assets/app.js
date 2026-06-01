@@ -32,6 +32,11 @@ function cacheElements() {
   els.metricsRow = document.getElementById('metricsRow');
   els.valuationStrip = document.getElementById('valuationStrip');
   els.sectionNav = document.getElementById('sectionNav');
+  els.mobileTocToggle = document.getElementById('mobileTocToggle');
+  els.mobileTocBackdrop = document.getElementById('mobileTocBackdrop');
+  els.mobileTocPanel = document.getElementById('mobileTocPanel');
+  els.mobileTocClose = document.getElementById('mobileTocClose');
+  els.mobileTocList = document.getElementById('mobileTocList');
   els.reportBody = document.getElementById('reportBody');
 }
 
@@ -68,6 +73,13 @@ function bindEvents() {
     if (id && id !== state.selectedId) {
       selectReport(id);
     }
+  });
+
+  els.mobileTocToggle.addEventListener('click', openMobileToc);
+  els.mobileTocClose.addEventListener('click', closeMobileToc);
+  els.mobileTocBackdrop.addEventListener('click', closeMobileToc);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMobileToc();
   });
 }
 
@@ -197,6 +209,7 @@ function renderEmptyState(title, text) {
 
 function clearSelection() {
   state.selectedId = null;
+  closeMobileToc();
   els.reportPlaceholder.style.display = 'flex';
   els.reportView.classList.remove('active');
   renderReportList();
@@ -295,6 +308,9 @@ function renderValuationStrip(report) {
 
 function renderLoading() {
   els.sectionNav.innerHTML = '';
+  els.mobileTocList.innerHTML = '';
+  els.mobileTocToggle.hidden = true;
+  closeMobileToc();
   els.reportBody.innerHTML = `
     <div class="loading-state">
       <div class="loading-spinner" aria-hidden="true"></div>
@@ -344,16 +360,26 @@ function prepareReportBody() {
 
 function buildSectionNav() {
   const headings = Array.from(els.reportBody.querySelectorAll('h2'));
-  els.sectionNav.innerHTML = headings.map((heading, index) => `
+  const linkMarkup = headings.map((heading, index) => `
     <button class="section-nav-link${index === 0 ? ' active' : ''}" type="button" data-target="${escapeHtml(heading.id)}">
       ${escapeHtml(shortenHeading(heading.textContent || `Section ${index + 1}`))}
     </button>
   `).join('');
+  const mobileLinkMarkup = headings.map((heading, index) => `
+    <button class="mobile-toc-link${index === 0 ? ' active' : ''}" type="button" data-target="${escapeHtml(heading.id)}">
+      ${escapeHtml(shortenHeading(heading.textContent || `Section ${index + 1}`))}
+    </button>
+  `).join('');
 
-  els.sectionNav.querySelectorAll('[data-target]').forEach((button) => {
+  els.sectionNav.innerHTML = linkMarkup;
+  els.mobileTocList.innerHTML = mobileLinkMarkup;
+  els.mobileTocToggle.hidden = headings.length === 0;
+
+  [...els.sectionNav.querySelectorAll('[data-target]'), ...els.mobileTocList.querySelectorAll('[data-target]')].forEach((button) => {
     button.addEventListener('click', () => {
       const target = document.getElementById(button.dataset.target);
       if (target) target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+      closeMobileToc();
     });
   });
 
@@ -370,7 +396,7 @@ function setupSectionObserver(headings) {
       .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
     if (!visible) return;
 
-    els.sectionNav.querySelectorAll('.section-nav-link').forEach((link) => {
+    [...els.sectionNav.querySelectorAll('.section-nav-link'), ...els.mobileTocList.querySelectorAll('.mobile-toc-link')].forEach((link) => {
       link.classList.toggle('active', link.dataset.target === visible.target.id);
     });
   }, {
@@ -380,6 +406,29 @@ function setupSectionObserver(headings) {
   });
 
   headings.forEach((heading) => state.observer.observe(heading));
+}
+
+function openMobileToc() {
+  if (els.mobileTocToggle.hidden) return;
+  els.mobileTocBackdrop.hidden = false;
+  els.mobileTocPanel.hidden = false;
+  requestAnimationFrame(() => {
+    els.mobileTocBackdrop.classList.add('open');
+    els.mobileTocPanel.classList.add('open');
+    els.mobileTocToggle.setAttribute('aria-expanded', 'true');
+  });
+}
+
+function closeMobileToc() {
+  els.mobileTocBackdrop.classList.remove('open');
+  els.mobileTocPanel.classList.remove('open');
+  els.mobileTocToggle.setAttribute('aria-expanded', 'false');
+  window.setTimeout(() => {
+    if (!els.mobileTocPanel.classList.contains('open')) {
+      els.mobileTocBackdrop.hidden = true;
+      els.mobileTocPanel.hidden = true;
+    }
+  }, prefersReducedMotion() ? 0 : 180);
 }
 
 function shortenHeading(text) {

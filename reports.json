@@ -1,5 +1,20 @@
 [
   {
+    "path": "reports/equity/cn/000977/2026/2026-06-01_000977_InspurInformation/report.md",
+    "market": "CN",
+    "ticker": "000977",
+    "company": "浪潮信息",
+    "title": "浪潮信息分析及评估报告",
+    "date": "2026-06-01",
+    "industry": "AI Server / Computing Infrastructure Hardware",
+    "score": 6.5,
+    "action": "中性",
+    "currentValue": { "label": "¥63.20", "numeric": 63.20 },
+    "safetyValue": { "label": "¥55.00", "numeric": 55.00 },
+    "intrinsicValue": { "label": "¥70.45", "numeric": 70.45 },
+    "summary": "浪潮信息是A股AI服务器/算力基础设施硬件核心标的，收入规模突出，2025年收入高增，但低毛利、高营运资本、现金流波动和供应链约束决定了不能按高毛利平台公司估值。当前约941.88亿元市值接近模型合理区间上沿但未明显突破，模型映射为“中公司中价”，动作偏中性。"
+  },
+  {
     "path": "reports/equity/hk/2669/2026/2026-06-01_2669_ChinaOverseasProperty/report.md",
     "market": "HK",
     "ticker": "2669",
