@@ -1,5 +1,20 @@
 [
   {
+    "path": "reports/equity/hk/6862/2026/2026-06-01_6862_Haidilao/report.md",
+    "market": "HK",
+    "ticker": "6862",
+    "company": "海底捞",
+    "title": "海底捞分析及评估报告",
+    "date": "2026-06-01",
+    "industry": "Chain Hotpot Restaurant / Catering",
+    "score": 7.08,
+    "action": "中性",
+    "currentValue": { "label": "HK$13.13", "numeric": 13.13 },
+    "safetyValue": { "label": "HK$10.41", "numeric": 10.41 },
+    "intrinsicValue": { "label": "HK$15.44", "numeric": 15.44 },
+    "summary": "海底捞仍是火锅连锁龙头，品牌、现金流和供应链能力较强；但 2025 年翻台率从 4.1 次/天下降到 3.9 次/天，自营餐厅收入下降，说明疫情后修复红利正在减弱。当前 PE 约 15-16x，不贵但也没有明显深度折价，模型映射为“中公司中价”，动作偏中性。"
+  },
+  {
     "path": "reports/equity/us/AMZN/2026/2026-06-01_AMZN_Amazon/report.md",
     "market": "US",
     "ticker": "AMZN",
