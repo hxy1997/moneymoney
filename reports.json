@@ -1,5 +1,20 @@
 [
   {
+    "path": "reports/equity/hk/2669/2026/2026-06-01_2669_ChinaOverseasProperty/report.md",
+    "market": "HK",
+    "ticker": "2669",
+    "company": "中海物业",
+    "title": "中海物业分析及评估报告",
+    "date": "2026-06-01",
+    "industry": "Property Management Services / Community and City Space Services",
+    "score": 6.92,
+    "action": "谨慎买入",
+    "currentValue": { "label": "HK$3.74", "numeric": 3.74 },
+    "safetyValue": { "label": "HK$3.61", "numeric": 3.61 },
+    "intrinsicValue": { "label": "HK$4.81", "numeric": 4.81 },
+    "summary": "中海物业是港股央企背景物业管理公司，基础物管现金流和股息有支撑，但最近半年房地产销售、开发投资和竣工仍在收缩，压制新增在管面积和非住户增值服务。当前约 8 倍 PE、约 5% 股息率处于历史偏低区间，模型映射为“中公司低价”，动作偏谨慎买入。"
+  },
+  {
     "path": "reports/equity/hk/6862/2026/2026-06-01_6862_Haidilao/report.md",
     "market": "HK",
     "ticker": "6862",
