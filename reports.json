@@ -1,5 +1,20 @@
 [
   {
+    "path": "reports/equity/us/CLSK/2026/2026-06-03_CLSK_CleanSpark/report.md",
+    "market": "US",
+    "ticker": "CLSK",
+    "company": "CleanSpark",
+    "title": "CleanSpark分析及评估报告",
+    "date": "2026-06-03",
+    "industry": "Bitcoin Mining / AI HPC Data Center Conversion",
+    "score": 5.9,
+    "action": "中性",
+    "currentValue": { "label": "$18.70", "numeric": 18.70 },
+    "safetyValue": { "label": "$15.62", "numeric": 15.62 },
+    "intrinsicValue": { "label": "$20.30", "numeric": 20.30 },
+    "summary": "CleanSpark 是带 AI/HPC 数据中心转型期权的比特币矿企。若 AI 转型成功，模型价格区间约 15.62-24.23 美元；若失败并回归纯矿业估值，区间约 8.72-14.59 美元。当前 18-19 美元大致反映 25%-35% 的 AI 转型成功概率，模型映射为中性观察。"
+  },
+  {
     "path": "reports/equity/cn/000977/2026/2026-06-01_000977_InspurInformation/report.md",
     "market": "CN",
     "ticker": "000977",
