@@ -60,6 +60,21 @@
     "summary": "亚马逊不是单纯零售股，而是电商流量、第三方卖家、广告、AWS 和 Trainium 自研 AI 芯片共同构成的复合平台。AWS 2026Q1 增速重回 28%，广告增长 24%，但 TTM FCF 被 AI capex 压到约 12 亿美元。模型映射为“好公司中价”，动作偏持有。"
   },
   {
+    "path": "reports/equity/us/NBIS/2026/2026-06-02_NBIS_NebiusGroup/report.md",
+    "market": "US",
+    "ticker": "NBIS",
+    "company": "Nebius Group",
+    "title": "Nebius Group分析及评估报告",
+    "date": "2026-06-02",
+    "industry": "AI Cloud / GPU Cloud / Neocloud Infrastructure",
+    "score": 6.2,
+    "action": "减持",
+    "currentValue": { "label": "$271.80", "numeric": 271.80 },
+    "safetyValue": { "label": "$162.70", "numeric": 162.70 },
+    "intrinsicValue": { "label": "$232.40", "numeric": 232.40 },
+    "summary": "Nebius Group 是高成长 AI 云和 GPU 算力基础设施资产，但当前价格已经接近 12x forward sales 情景，提前定价大量 2026-2027 年收入兑现。利润质量和 FCF 尚未支撑 PE/FCF 估值，模型映射为“中公司高价”，动作偏减持。"
+  },
+  {
     "path": "reports/equity/hk/9992/2026/2026-06-01_9992_PopMart/report.md",
     "market": "HK",
     "ticker": "9992",
