@@ -128,6 +128,7 @@ The current `Finance` workspace should be treated as an instance repository cand
 | `portfolio-data-manager` | SQLite schema, migrations, holdings, transactions, snapshots, query helpers | DB, CSV/manual input | DB |
 | `market-data-collector` | Quotes, OHLCV, index, sector, technical and liquidity snapshots | Security list, config | DB market tables, raw cache |
 | `news-event-collector` | News, announcements, policy events, research headlines, event scoring | Security list, time window | DB news tables, raw cache |
+| `technical-signal-analyst` | Interpret technical indicators into trend, moving-average, volume, support/resistance signals | DB market tables, technical indicators | Report technical section, recommendation triggers |
 | `daily-portfolio-analyst` | Daily strategy recommendations from holdings, market, news, rules, and long-term reports | DB, rules, prior reports | DB recommendations, report payload |
 | `a-share-report-analyzer` | Deep fundamental and valuation report engine for A-share names | Company data, financials, industry sources | Research report artifacts, DB report index |
 | `review-journal-manager` | Human review capture: accepted, rejected, modified, notes | Recommendations, user input | DB reviews |
@@ -143,12 +144,15 @@ flowchart TD
   O --> PDM["portfolio-data-manager"]
   O --> MDC["market-data-collector"]
   O --> NEC["news-event-collector"]
+  O --> TSA["technical-signal-analyst"]
   O --> DPA["daily-portfolio-analyst"]
 
   PDM --> DB["data/portfolio.db"]
   MDC --> DB
   NEC --> DB
+  DB --> TSA
 
+  TSA --> DPA
   DPA --> DB
   DPA --> ASR["a-share-report-analyzer"]
   ASR --> DB
@@ -175,10 +179,43 @@ finance-system-orchestrator
   -> market-data-collector: collect 24h price, index, sector, liquidity, technical data
   -> news-event-collector: collect 24h news, announcements, policy and research events
   -> daily-portfolio-analyst: produce recommendation draft per position
-       -> optionally call a-share-report-analyzer for stale or missing slow-variable thesis
+       -> include decision-first top events and a source-linked evidence appendix
+       -> produce watchlist candidate status for stocks the user wants to buy later
+       -> check whether a-share-report-analyzer output is missing or older than the configured freshness window
+       -> recommend, but do not automatically run, a forced deep-report refresh
   -> html-report-renderer: render private and public HTML reports
   -> public-report-publisher: scan sanitized artifacts and sync to an instance repository if requested
 ```
+
+### Daily Information Layer
+
+The daily report should use an A+B structure:
+
+- **Market overview first**: show the latest broad-market context for 上证指数, 科创50, and 创业板指, including pct change,成交额/成交量 proxy, volume trend, and trend label.
+- **Market sentiment**: prefer public standards by market. US should reference VIX/CNN Fear & Greed, HK should reference VHSI, and CN should prefer a public volatility-index style source such as 中国波指/上证50ETF期权隐含波动率 if available. When no stable external CN value is collected, show an Asterion CN Fear & Greed proxy from 0-100 based on the three index pct changes, trend labels, and volume ratios, clearly labeled as a local proxy.
+- **Decision-first body**: show the top 3-5 company, sector, macro, or announcement events that may affect today's operation decision.
+- **Decision desk**: separate held positions from watchlist candidates. Held positions answer “do I need to adjust?”; watchlist candidates answer “is this close enough to the pre-defined entry plan?”
+- **Evidence appendix**: list collected 24h evidence with source, time, title, URL, type, impact direction, confidence, and link reason.
+- **Per-stock tabs**: split held positions and watchlist candidates by ticker to reduce scroll fatigue.
+- **Technical and chip sections**: show MA, MACD, BOLL, volume, support/resistance, and public-OHLCV-based volume-price distribution estimates.
+- **Local TS dashboard**: the primary review surface should be a local Vite/React/TypeScript dashboard backed by a local API over SQLite. Static HTML remains a public/private export artifact.
+
+The daily report should not replace a full equity research report. Detailed fundamental, valuation, and industry-cycle analysis belongs to `a-share-report-analyzer`.
+
+Chip distribution must be labeled as an estimate. It is based on public OHLCV volume-price distribution and must not be presented as true market-wide holder cost.
+
+### Deep Research Freshness
+
+`a-share-report-analyzer` is the slow-variable research engine. It should normally be used around once per held A-share per month, or when the user explicitly forces a refresh.
+
+The daily run may check `research_reports` for the latest complete `deep_equity` report from `a-share-report-analyzer`. If no report exists, or the latest report is older than the configured freshness window, the daily report should surface:
+
+- latest report date or missing status
+- age in days
+- freshness window
+- recommendation to consider a forced refresh
+
+The daily workflow must not automatically run the deep report just because the report is stale. The user decides whether a surfaced event is material enough to force a refresh.
 
 ### Review Run
 
@@ -311,8 +348,16 @@ CREATE TABLE watchlist (
   list_name TEXT NOT NULL DEFAULT 'default',
   priority INTEGER DEFAULT 0,
   reason TEXT,
+  target_buy_low REAL,
+  target_buy_high REAL,
+  target_weight REAL,
+  buy_trigger TEXT,
+  forbid_buy_rule TEXT,
+  review_note TEXT,
+  last_reviewed_at TEXT,
   active INTEGER NOT NULL DEFAULT 1,
   created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
   UNIQUE (security_id, list_name)
 );
 ```
@@ -886,6 +931,25 @@ Candidate scripts:
 - `scripts/link_news_to_securities.py`
 - `scripts/score_events.py`
 
+### `technical-signal-analyst`
+
+Purpose:
+
+- Interpret already-collected market data and technical indicators.
+- Produce trend, moving-average, volume, support, and resistance signals.
+- Add technical triggers to daily recommendations without fetching data.
+- Keep technical facts separate from portfolio-specific judgment.
+
+Bundled references:
+
+- `references/technical-rules.md`: signal interpretation rules.
+- `references/output-contract.md`: report payload fields.
+
+Candidate scripts:
+
+- `scripts/calc_technical_indicators.py`
+- `scripts/generate_recommendation_payload.py`
+
 ### `daily-portfolio-analyst`
 
 Purpose:
@@ -906,6 +970,7 @@ Candidate scripts:
 - `scripts/build_daily_context.py`
 - `scripts/generate_recommendation_payload.py`
 - `scripts/validate_recommendations.py`
+- `scripts/check_research_freshness.py`
 
 ### `a-share-report-analyzer`
 
@@ -927,6 +992,12 @@ Trigger from daily workflow when:
 - The last deep report is stale.
 - A major news event challenges the original thesis.
 - The valuation-anchor table is stale or missing.
+
+Daily workflow behavior:
+
+- Surface stale or missing deep reports as a review prompt.
+- Do not run this skill automatically during the normal daily report.
+- Run it only when the user explicitly asks for a deep report or uses a force-refresh command.
 
 ### `review-journal-manager`
 
@@ -1066,7 +1137,8 @@ Before sync, it must scan for:
 ./bootstrap.sh init-db
 ./bootstrap.sh demo-run
 ./bootstrap.sh daily --date YYYY-MM-DD
-./bootstrap.sh review --date YYYY-MM-DD
+./bootstrap.sh research check --max-age-days 30
+./bootstrap.sh review list
 ./bootstrap.sh outcomes --date YYYY-MM-DD
 ./bootstrap.sh publish --date YYYY-MM-DD --target ../asterion-personal
 ```
@@ -1085,7 +1157,7 @@ Any agent clone should follow this order:
 1. Create repository bootstrap files and `.gitignore`.
 2. Create SQLite schema and migration runner.
 3. Create sample seed data with fake portfolio values.
-4. Package the 10 skills with lean `SKILL.md` files and references.
+4. Package the 11 skills with lean `SKILL.md` files and references.
 5. Implement deterministic scripts for DB init, daily mock run, HTML render, and sensitive scan.
 6. Generate one private HTML and one public HTML from fake data.
 7. Add real market/news collectors.

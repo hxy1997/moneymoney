@@ -54,7 +54,7 @@ When changing a task status, update:
 | Repo | Role | Implementation Status |
 |---|---|---|
 | `asterion-core` | Local runtime, skills, schema, scripts, bootstrap | `in_progress` |
-| `asterion-pages` | Reusable static templates and front-end assets | `todo` |
+| `asterion-pages` | Reusable static templates and front-end assets | `done` |
 | `asterion-<instance>` | Concrete generated report instance, current `Finance` workspace can become one | `todo` |
 
 ## 5. GitHub CLI Usage Policy
@@ -101,13 +101,13 @@ Default visibility:
 | P0 | Planning and repo boundary | `done` | Design and implementation docs exist |
 | P1 | Core scaffold | `done` | `asterion-core` skeleton boots and passes `check` |
 | P2 | SQLite foundation | `done` | Schema initializes and demo seed loads |
-| P3 | Skill packaging | `done` | 10 skills exist with lean `SKILL.md` and references |
-| P4 | Deterministic scripts | `in_progress` | DB, mock daily, render, scan scripts run |
-| P5 | Pages templates | `todo` | Private/public daily HTML render from fake data |
-| P6 | Instance publishing | `todo` | Sanitized artifacts sync to instance repo |
-| P7 | Real data adapters | `todo` | Market/news collectors can populate DB |
-| P8 | Review and outcomes | `todo` | Review capture and outcome tracking work |
-| P9 | Hardening | `todo` | Tests, docs, privacy checks, handoff complete |
+| P3 | Skill packaging | `done` | 11 skills exist with lean `SKILL.md` and references |
+| P4 | Deterministic scripts | `done` | DB, mock daily, render, scan scripts run |
+| P5 | Pages templates | `done` | Private/public daily HTML render from fake data |
+| P6 | Instance publishing | `done` | Sanitized artifacts sync to instance repo |
+| P7 | Real data adapters | `in_progress` | Market/news collectors can populate DB |
+| P8 | Review and outcomes | `done` | Review capture and outcome tracking work |
+| P9 | Hardening | `in_progress` | Tests, docs, privacy checks, handoff complete |
 
 ## 7. Work Breakdown
 
@@ -116,7 +116,7 @@ Default visibility:
 | ID | Task | Status | Output | Verification |
 |---|---|---|---|---|
 | P0.1 | Finalize Asterion naming: `asterion-core`, `asterion-pages`, `asterion-<instance>` | `done` | Updated design doc | Design doc contains repository taxonomy |
-| P0.2 | Define skill architecture and collaboration flow | `done` | Updated design doc | Design doc lists 10 skills and workflow diagram |
+| P0.2 | Define skill architecture and collaboration flow | `done` | Updated design doc | Design doc lists 11 skills and workflow diagram |
 | P0.3 | Define SQLite schema | `done` | Updated design doc | Design doc contains full DDL |
 | P0.4 | Define main-session vs subagent policy | `done` | Updated design doc | Design doc has orchestrator subagent policy |
 | P0.5 | Create this implementation plan | `done` | This file | File exists and includes stable task IDs |
@@ -160,12 +160,13 @@ Each skill should keep `SKILL.md` lean. Detailed schemas, contracts, and example
 | S2 | `portfolio-data-manager` | `done` | `SKILL.md`, `references/schema.md`, scripts adapters | Skill points to DB scripts |
 | S3 | `market-data-collector` | `done` | `SKILL.md`, `references/provider-strategy.md` | Skill supports mock provider first |
 | S4 | `news-event-collector` | `done` | `SKILL.md`, `references/source-policy.md`, `references/event-taxonomy.md` | Skill defines source tier and event score |
-| S5 | `daily-portfolio-analyst` | `done` | `SKILL.md`, `references/decision-contract.md`, `references/action-rules.md` | Skill outputs structured recommendation JSON |
-| S6 | `a-share-report-analyzer` | `done` | Existing skill copied or vendored into core | Existing references/scripts preserved |
-| S7 | `review-journal-manager` | `done` | `SKILL.md`, `references/review-contract.md` | Skill separates recommendation from user decision |
-| S8 | `outcome-backtester` | `done` | `SKILL.md`, `references/outcome-methodology.md` | Skill defines 1/3/5/20 day horizons |
-| S9 | `html-report-renderer` | `done` | `SKILL.md`, templates/assets references | Skill handles private and public modes |
-| S10 | `public-report-publisher` | `done` | `SKILL.md`, `references/privacy-rules.md`, scanner script | Skill fails closed on sensitive scan |
+| S5 | `technical-signal-analyst` | `done` | `SKILL.md`, `references/technical-rules.md`, `references/output-contract.md` | Skill defines technical report fields and trigger rules |
+| S6 | `daily-portfolio-analyst` | `done` | `SKILL.md`, `references/decision-contract.md`, `references/action-rules.md` | Skill outputs structured recommendation JSON |
+| S7 | `a-share-report-analyzer` | `done` | Existing skill copied or vendored into core | Existing references/scripts preserved |
+| S8 | `review-journal-manager` | `done` | `SKILL.md`, `references/review-contract.md` | Skill separates recommendation from user decision |
+| S9 | `outcome-backtester` | `done` | `SKILL.md`, `references/outcome-methodology.md` | Skill defines 1/3/5/20 day horizons |
+| S10 | `html-report-renderer` | `done` | `SKILL.md`, templates/assets references | Skill handles private and public modes |
+| S11 | `public-report-publisher` | `done` | `SKILL.md`, `references/privacy-rules.md`, scanner script | Skill fails closed on sensitive scan |
 
 ### P4. Deterministic Scripts
 
@@ -176,35 +177,35 @@ Each skill should keep `SKILL.md` lean. Detailed schemas, contracts, and example
 | PY3 | `scripts/build_daily_context.py` | `done` | daily analyst | Outputs stable JSON from fake DB |
 | PY4 | `scripts/generate_recommendation_payload.py` | `done` | daily analyst | Produces recommendation JSON contract |
 | PY5 | `scripts/validate_recommendations.py` | `done` | daily analyst | Fails on missing required fields |
-| PY6 | `scripts/render_daily_html.py` | `todo` | html renderer | Creates private/public HTML from same payload |
-| PY7 | `scripts/render_daily_json.py` | `todo` | html renderer | Creates public/private JSON artifacts |
-| PY8 | `scripts/scan_sensitive.py` | `todo` | public publisher | Detects fake secret/cost/quantity samples |
-| PY9 | `scripts/publish_public_report.py` | `todo` | public publisher | Copies only whitelist files |
-| PY10 | `scripts/update_outcomes.py` | `todo` | outcome backtester | Fills demo 1/3/5/20 day outcome rows |
+| PY6 | `scripts/render_daily_html.py` | `done` | html renderer | Creates private/public HTML from same payload |
+| PY7 | `scripts/render_daily_json.py` | `done` | html renderer | Creates public/private JSON artifacts |
+| PY8 | `scripts/scan_sensitive.py` | `done` | public publisher | Detects fake secret/cost/quantity samples |
+| PY9 | `scripts/publish_public_report.py` | `done` | public publisher | Copies only whitelist files |
+| PY10 | `scripts/update_outcomes.py` | `done` | outcome backtester | Fills demo 1/3/5/20 day outcome rows |
 
 ### P5. `asterion-pages` Templates
 
 | ID | Task | Status | Output | Verification |
 |---|---|---|---|---|
-| PG1 | Create reusable daily private template | `todo` | `templates/daily-private.html` | Renders complete fake private report |
-| PG2 | Create reusable daily public template | `todo` | `templates/daily-public.html` | Contains no private fields |
-| PG3 | Create report index template | `todo` | `templates/report-index.html` | Lists fake daily reports |
-| PG4 | Create shared CSS | `todo` | `assets/styles.css` | Desktop/mobile no overlap in browser QA |
-| PG5 | Create optional JS for filters/tabs | `todo` | `assets/app.js` | Works without server-side runtime |
-| PG6 | Add fake examples | `todo` | `examples/daily/2099-01-01/index.html` | Uses fake data only |
+| PG1 | Create reusable daily private template | `done` | `templates/daily-private.html` | Renders complete fake private report |
+| PG2 | Create reusable daily public template | `done` | `templates/daily-public.html` | Contains no private fields |
+| PG3 | Create report index template | `done` | `templates/report-index.html` | Lists fake daily reports |
+| PG4 | Create shared CSS | `done` | `assets/styles.css` | Static responsive styles exist |
+| PG5 | Create optional JS for filters/tabs | `done` | `assets/app.js` | Works without server-side runtime |
+| PG6 | Add fake examples | `done` | `examples/daily/2099-01-01/index.html` | Uses fake data only and passes scanner |
 
 ### P6. Instance Repository Publishing
 
 | ID | Task | Status | Output | Verification |
 |---|---|---|---|---|
-| I1 | Define instance repo contract | `todo` | Docs in `BOOTSTRAP.md` or publisher reference | Explains `asterion-<instance>` role |
-| I2 | Add whitelist copy logic | `todo` | Publisher script | Cannot copy files outside whitelist |
-| I3 | Add sensitive scan gate | `todo` | Scan report JSON | Publish fails on seeded sensitive text |
-| I4 | Add dry-run mode | `todo` | `--dry-run` option | Prints copy plan without writes |
-| I5 | Add publish log in DB | `todo` | `public_exports` rows | Export row includes scan status |
-| I6 | Test against temporary fake instance | `todo` | Temp dir output | `daily-reports.json` and HTML copied |
-| I7 | Add optional `gh` instance repo bootstrap | `todo` | Documented commands or script wrapper | Creates/checks instance repo without private files |
-| I8 | Add optional GitHub Pages setup guidance | `todo` | `BOOTSTRAP.md` or publisher reference | Explains manual/CLI setup and safety checks |
+| I1 | Define instance repo contract | `done` | Docs in `BOOTSTRAP.md` or publisher reference | Explains `asterion-<instance>` role |
+| I2 | Add whitelist copy logic | `done` | Publisher script | Cannot copy files outside whitelist |
+| I3 | Add sensitive scan gate | `done` | Scan report JSON | Publish fails on seeded sensitive text |
+| I4 | Add dry-run mode | `done` | `--dry-run` option | Prints copy plan without writes |
+| I5 | Add publish log in DB | `done` | `public_exports` rows | Export row includes scan status |
+| I6 | Test against temporary fake instance | `done` | Temp dir output | `daily-reports.json` and HTML copied |
+| I7 | Add optional `gh` instance repo bootstrap | `done` | Documented commands or script wrapper | Creates/checks instance repo without private files |
+| I8 | Add optional GitHub Pages setup guidance | `done` | `BOOTSTRAP.md` or publisher reference | Explains manual/CLI setup and safety checks |
 
 ### P7. Real Market and News Adapters
 
@@ -212,36 +213,48 @@ MVP should start with mock providers. Real providers come after the DB, skill, a
 
 | ID | Task | Status | Output | Verification |
 |---|---|---|---|---|
-| M1 | Implement mock market provider | `todo` | Deterministic fake OHLCV | Daily mock run stable |
-| M2 | Implement AkShare/Tushare A-share adapter | `todo` | Market snapshots | Handles missing provider/API key gracefully |
+| M1 | Implement mock market provider | `done` | Deterministic fake OHLCV | Daily mock run stable |
+| M2 | Implement A-share provider adapter | `done` | Eastmoney market snapshots | 招商银行 `600036` writes 80 rows |
 | M3 | Implement yfinance US/HK fallback if needed | `todo` | Market snapshots | Handles unsupported ticker gracefully |
-| M4 | Calculate technical indicators | `todo` | `technical_indicators` rows | Values match fixture |
-| M5 | Implement mock news provider | `todo` | Deterministic fake news | Daily mock run stable |
-| M6 | Implement web/news collector adapter | `todo` | `news_items` rows | Stores source URL and collected time |
-| M7 | Link news to securities | `todo` | `news_security_links` rows | Fixture news links to expected ticker |
-| M8 | Score event impact | `todo` | `impact_score`, confidence | Score deterministic for fixture |
+| M4 | Calculate technical indicators | `done` | `technical_indicators` rows | 招商银行 writes 80 indicator rows |
+| M4.1 | Interpret technical signals in daily reports | `done` | `technical` fields and recommendation triggers | 招商银行 report includes trend, MA, volume, support/resistance section |
+| M5 | Implement mock news provider | `done` | Deterministic fake news | `collect_news.py --provider mock` available |
+| M6 | Implement web/news collector adapter | `done` | `news_items` rows | Bing News RSS and CNInfo store source URL and collected time |
+| M7 | Link news to securities | `done` | `news_security_links` rows | 招商银行 RSS + CNInfo tests link 10 items |
+| M8 | Score event impact | `done` | `impact_score`, confidence | Initial deterministic relevance/impact score implemented |
+| M9 | Add decision-first news layer | `done` | Top events and evidence appendix in daily payload/HTML | Report shows source, time, title, URL, impact, confidence |
+| M10 | Add deep research freshness check | `done` | CLI reads `research_reports` for `a-share-report-analyzer` freshness | Does not auto-run deep reports; user can force refresh manually |
+| M11 | Add broad-market overview | `done` | Eastmoney index snapshots for 上证/科创50/创业板指 | Daily report shows pct change, amount, volume ratio, trend |
+| M12 | Add MACD/BOLL technical indicators | `done` | `technical_indicators` MACD and BOLL fields | 招商银行 report shows MACD and BOLL interpretation |
+| M13 | Add chip distribution estimate | `done` | OHLCV volume-price distribution estimate in payload/HTML | Report labels estimate and does not treat it as true holder cost |
+| M14 | Add shadcn-style tabbed report UI | `done` | Static HTML tabs and refined report styling | Multiple holdings render as separate tabs without build step |
+| M15 | Add market fear-greed proxy | `done` | Asterion CN Fear & Greed in payload/HTML | Score derived from 上证/科创50/创业板涨跌、趋势、量能 |
+| M16 | Add watchlist strategy storage and CLI | `done` | `watchlist` schema fields plus `./bootstrap.sh watchlist` | Stores target buy zone, trigger, forbid rule, note, priority |
+| M17 | Add watchlist daily strategy payload | `done` | `watchlist_candidates` in context/recommendation JSON/HTML | Watchlist candidates are excluded when already held in the active portfolio |
+| M18 | Redesign daily report as decision desk | `done` | Light workstation UI with market radar, sentiment standards, holdings table, watchlist panel, unified tabs | 2026-06-07 private report renders in Chrome and public scan passes |
+| M19 | Add local TypeScript dashboard | `done` | Vite/React/TS app plus local Python API over SQLite | `dashboard build` and `dashboard serve` provide history browsing, watchlist form, and report workbench |
 
 ### P8. Review and Outcome Loop
 
 | ID | Task | Status | Output | Verification |
 |---|---|---|---|---|
-| R1 | Implement pending review list | `todo` | JSON/table output | Shows unreviewed recommendations |
-| R2 | Implement review recording | `todo` | `reviews` rows | Preserves original recommendation |
-| R3 | Add review section to private HTML | `todo` | Static review instructions or exportable form placeholder | Does not imply auto-trading |
-| R4 | Implement outcome horizon scheduler | `todo` | Due outcome query | Finds recommendations due for 1/3/5/20 day review |
-| R5 | Implement outcome update | `todo` | `outcome_tracking` rows | Demo data computes returns |
-| R6 | Implement strategy performance summary | `todo` | `strategy_performance` rows/report | Aggregates by action/rule |
+| R1 | Implement pending review list | `done` | JSON/table output | Shows unreviewed recommendations |
+| R2 | Implement review recording | `done` | `reviews` rows | Preserves original recommendation |
+| R3 | Add review section to private HTML | `done` | Static review instructions or exportable form placeholder | Does not imply auto-trading |
+| R4 | Implement outcome horizon scheduler | `done` | Due outcome query | Finds recommendations due for 1/3/5/20 day review |
+| R5 | Implement outcome update | `done` | `outcome_tracking` rows | Demo data computes returns |
+| R6 | Implement strategy performance summary | `done` | `strategy_performance` rows/report | Aggregates by action/rule |
 
 ### P9. Hardening and Handoff
 
 | ID | Task | Status | Output | Verification |
 |---|---|---|---|---|
-| H1 | Add unit tests for deterministic scripts | `todo` | Test suite | Tests pass locally |
-| H2 | Add integration demo run | `todo` | Fake DB to fake HTML pipeline | One command completes |
-| H3 | Add privacy regression fixtures | `todo` | Scanner test cases | Sensitive samples fail |
-| H4 | Add bootstrap smoke test | `todo` | `./bootstrap.sh check` | Passes on clean clone |
-| H5 | Add handoff notes section updates | `todo` | This doc updated | Latest status visible |
-| H6 | Add user-facing quickstart | `todo` | `BOOTSTRAP.md` | New agent can follow it |
+| H1 | Add unit tests for deterministic scripts | `done` | Test suite | `./bootstrap.sh test` runs 17 tests |
+| H2 | Add integration demo run | `done` | Fake DB to fake HTML pipeline | One command completes |
+| H3 | Add privacy regression fixtures | `done` | Scanner test cases | Sensitive samples fail |
+| H4 | Add bootstrap smoke test | `done` | `./bootstrap.sh check` | Passes on clean clone |
+| H5 | Add handoff notes section updates | `done` | This doc updated | Latest status visible |
+| H6 | Add user-facing quickstart | `done` | `BOOTSTRAP.md` | New agent can follow it |
 
 ## 8. Implementation Order
 
@@ -275,14 +288,22 @@ Current state:
 - `asterion-core` exists at `/Users/hexingyuan/Documents/asterion-core` as a local git repository.
 - P1 core scaffold is complete.
 - P2 SQLite foundation is complete: schema, initial migration, fake seed, init, migrate, validate, position recompute, and read-only query helpers are implemented.
-- P3 skill packaging is complete: 10 skill folders exist, including vendored `a-share-report-analyzer`.
-- P4 is partially complete: `check_environment.py`, `run_daily.py`, `build_daily_context.py`, `generate_recommendation_payload.py`, and `validate_recommendations.py` are implemented. Render, JSON export, sensitive scan, publisher, and outcome scripts remain.
+- P3 skill packaging is complete: 11 skill folders exist, including vendored `a-share-report-analyzer` and the new `technical-signal-analyst`.
+- P4 deterministic scripts are complete: mock daily context, recommendations, validation, rendering, sensitive scan, publisher, and outcome update scripts are implemented.
+- P6 instance publishing is complete: whitelist copy, dry-run, sensitive scan gate, temp instance smoke test, DB export logging, and optional GitHub CLI guidance are implemented.
+- P8 review/outcome loop is complete: pending review list, review recording, private HTML review affordance, outcome update, and strategy-performance summary are implemented.
+- P5 `asterion-pages` exists at `/Users/hexingyuan/Documents/asterion-pages` with reusable templates, shared assets, fake examples, and a local git repo.
+- P7 is partially complete: CN A-share Eastmoney daily K-line adapter, index snapshots for 上证/科创50/创业板指, technical indicator calculation including MACD/BOLL, chip distribution estimation, technical signal interpretation, mock news, Bing News RSS collection, CNInfo official announcement collection, news-security linking, initial impact scoring, watchlist candidate analysis, and public-standard-first sentiment framing are implemented. 招商银行 `600036` has been used as the real smoke test.
+- Daily report information-layer upgrade is implemented: report body shows decision-first Top events, and the appendix keeps source-linked evidence for verification.
+- Deep A-share research refresh policy is implemented: `research check` reads `research_reports` on an approximately monthly cadence, but stale status only prompts the user; the normal daily run must not auto-run deep research.
+- P9 has started: `./bootstrap.sh test` runs 17 regression tests for recommendation contract, watchlist candidate contract, dashboard API helpers, sensitive scanning, hidden metadata skip, publisher date filtering, CNInfo helper behavior, research freshness, and HTML evidence/watchlist rendering.
+- A 招商银行 morning report demo has been regenerated with the user's local private position, market overview, market sentiment, public benchmark notes, decision-desk UI, shadcn-style tabs, MACD/BOLL, chip distribution estimate, and deep-research freshness. Public sanitizer removes cost-derived and holding-thesis text; public scan passes on `output/public/daily/2026-06-07/index.html`.
 - Current `Finance` workspace remains an instance repository candidate.
 
 Next recommended task:
 
-1. Continue P4 with renderer and privacy scripts: `render_daily_html.py`, `render_daily_json.py`, `scan_sensitive.py`, and `publish_public_report.py`.
-2. Do not add real provider adapters until the mock daily pipeline exists.
+1. Continue P7 with US/HK fallback if broader markets are needed, or improve CNInfo classification by mapping announcement categories into event severity.
+2. Continue P9 by adding integration tests around `demo-run`, `market fetch`, `news collect`, and `announcements collect`, then optional GitHub remote setup.
 
 Open questions:
 
@@ -305,7 +326,7 @@ Any future agent should:
 MVP is done when:
 
 - `asterion-core` can initialize a local fake SQLite DB.
-- The 10 skills exist and describe their workflows.
+- The 11 skills exist and describe their workflows.
 - A mock daily run produces structured recommendations.
 - Private and public HTML reports render from fake data.
 - Sensitive scan blocks intentionally seeded private fields.
